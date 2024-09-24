@@ -1,13 +1,13 @@
 provider "aws" {
-    region = var.aws_region
+    region = "us-east-1"
   
 }
 
-resource "aws_instance" "reddy" {
-    ami = var.ami_value
-    instance_type = var.instance_type
-    subnet_id = var.subnet_id
-    tags = {
-        Name = "reddy_instance"
-    }
+module "ec2_instance" {
+    source = "./modules/ec2"
+    ami_value = "ami-0e86e20dae9224db8"
+    instance_type = "t2.nano"
+    subnet_id = "subnet-0255c54d7136e7c71"
+    aws_region = "us-east-1"
+  
 }
